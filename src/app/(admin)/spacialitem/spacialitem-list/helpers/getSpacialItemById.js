@@ -1,5 +1,5 @@
 export async function getSpacialItemById(special_item_id, token) {
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_spacialitem", {
+  const res = await fetch("http://localhost:3002/admin/get_spacialitem", {
     headers: {
       Authorization: `${token}`,
     },

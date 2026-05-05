@@ -67,7 +67,7 @@ const AddMeal = () => {
   useEffect(() => {
     if (!session?.accessToken) return;
 
-    fetch('https://api.tailoredtiffin.com/admin/get_bread', {
+    fetch('http://localhost:3002/admin/get_bread', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -77,7 +77,7 @@ const AddMeal = () => {
         }
       });
 
-    fetch('https://api.tailoredtiffin.com/admin/get_side_items', {
+    fetch('http://localhost:3002/admin/get_side_items', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -161,7 +161,7 @@ const AddMeal = () => {
 
       // 3. Send as FormData
       const res = await fetch(
-        'https://api.tailoredtiffin.com/admin/add/add_meal',
+        'http://localhost:3002/admin/add/add_meal',
         {
           method: 'POST',
           headers: {
@@ -259,7 +259,7 @@ const AddMeal = () => {
                 control={control}
                 type="number"
                 name="other_count"
-                label="Other Items"
+                label="Rice Section"
               />
             </Col>
           </Row>
@@ -270,7 +270,7 @@ const AddMeal = () => {
       {sideItems.length > 0 && (
         <Card className="mb-3">
           <CardHeader>
-            <CardTitle as="h4">Included Side Items</CardTitle>
+            <CardTitle as="h4">Included Add Ons</CardTitle>
             <small className="text-muted">Each selected item = 1 qty included with the meal. For extra qty, user can add from extra items.</small>
           </CardHeader>
           <CardBody>

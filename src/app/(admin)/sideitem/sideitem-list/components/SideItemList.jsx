@@ -41,7 +41,7 @@ const SideItemList = () => {
   const handleDelete = async (side_item_id) => {
     if (!session?.accessToken) return;
 
-    const confirmDelete = window.confirm('Are you sure you want to delete this side item?');
+    const confirmDelete = window.confirm('Are you sure you want to delete this add on?');
     if (!confirmDelete) return;
 
     setLoading(true);
@@ -54,7 +54,7 @@ const SideItemList = () => {
     if (res.status === 'success') {
       await fetchSideItems();
     } else {
-      alert(res.msg || 'Failed to delete side item');
+      alert(res.msg || 'Failed to delete add on');
     }
 
     setLoading(false);
@@ -66,10 +66,10 @@ const SideItemList = () => {
         <Card>
           <CardHeader className="d-flex justify-content-between align-items-center gap-1">
             <CardTitle as="h4" className="flex-grow-1">
-              All Side Items
+              All Add Ons
             </CardTitle>
             <Link href="/sideitem/sideitem-add" className="btn btn-sm btn-primary">
-              Add Side Item
+              Add Add On
             </Link>
           </CardHeader>
 
@@ -77,7 +77,7 @@ const SideItemList = () => {
             <table className="table align-middle mb-0 table-hover table-centered">
               <thead className="bg-light-subtle">
                 <tr>
-                  <th>Side Item Name</th>
+                  <th>Add On Name</th>
                   <th>Status</th>
                   <th>ID</th>
                   <th>Action</th>
@@ -88,7 +88,7 @@ const SideItemList = () => {
                 {sideItemData.length === 0 && (
                   <tr>
                     <td colSpan="4" className="text-center py-3">
-                      No Side Items Found
+                      No Add Ons Found
                     </td>
                   </tr>
                 )}

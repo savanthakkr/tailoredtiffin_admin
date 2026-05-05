@@ -4,7 +4,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 export async function getSpacialItemList(token) {
   if (!token) return [];
 
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_special_items", {
+  const res = await fetch("http://localhost:3002/admin/get_special_items", {
     method: "GET",
     headers: {
       Authorization: `${token}`,

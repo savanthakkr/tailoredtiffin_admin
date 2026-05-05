@@ -1,6 +1,6 @@
 export async function getAdminUsers() {
   const res = await fetch(
-    `https://api.tailoredtiffin.com//admin/get_users`,
+    `http://localhost:3002/admin/get_users`,
     {
       headers: {
         Authorization: `${localStorage.getItem('token')}`,
