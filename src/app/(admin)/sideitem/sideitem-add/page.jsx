@@ -3,11 +3,11 @@ import { Col, Row } from 'react-bootstrap';
 import AddSideItem from './components/AddSideItem';
 import PageTItle from '@/components/PageTItle';
 export const metadata = {
-  title: 'Side Item Add'
+  title: 'Create Add On'
 };
 const SideItemAddPage = () => {
   return <>
-      <PageTItle title="CREATE SIDE ITEM" />
+      <PageTItle title="CREATE ADD ON" />
       <Row>
         <Col xl={9} lg={8}>
           <AddSideItem />

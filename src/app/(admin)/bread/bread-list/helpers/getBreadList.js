@@ -4,7 +4,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 export async function getBreadList(token) {
   if (!token) return [];
 
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_bread", {
+  const res = await fetch("http://localhost:3002/admin/get_bread", {
     method: "GET",
     headers: {
       Authorization: `${token}`,

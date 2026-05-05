@@ -20,7 +20,7 @@ const CustomerDataList = () => {
     if (!session?.accessToken) return;
 
     let url =
-      'https://api.tailoredtiffin.com//admin/admin_get_all_Users';
+      'http://localhost:3002/admin/admin_get_all_Users';
 
     if (filter !== '') {
       url += `?pay_later=${filter}`;
@@ -46,7 +46,7 @@ const deleteUser = async (user_id) => {
   if (!session?.accessToken) return;
 
   const res = await fetch(
-    "https://api.tailoredtiffin.com//admin/admin_delete_user",
+    "http://localhost:3002/admin/admin_delete_user",
     {
       method: "POST",
       headers: {
@@ -118,7 +118,7 @@ const deleteUser = async (user_id) => {
     }
 
     await fetch(
-      'https://api.tailoredtiffin.com//admin/set_pay_later_access',
+      'http://localhost:3002/admin/set_pay_later_access',
       {
         method: 'POST',
         headers: {

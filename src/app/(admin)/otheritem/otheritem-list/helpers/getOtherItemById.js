@@ -1,5 +1,5 @@
 export async function getOtherItemById(other_item_id, token) {
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_other_item", {
+  const res = await fetch("http://localhost:3002/admin/get_other_item", {
     headers: {
       Authorization: `${token}`,
     },

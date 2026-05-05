@@ -50,7 +50,7 @@ const Stats = () => {
     setLoading(true);
 
     fetch(
-      `https://api.tailoredtiffin.com//admin/get_admin_dashboard_stats?from_date=${fromDate}&to_date=${toDate}`,
+      `http://localhost:3002/admin/get_admin_dashboard_stats?from_date=${fromDate}&to_date=${toDate}`,
       {
         headers: {
           Authorization: session.accessToken
@@ -72,7 +72,7 @@ const Stats = () => {
 
   
   const sendMenuNotification = () => {
-    fetch(`https://api.tailoredtiffin.com//admin/admin_send_menu_update_notification`, {
+    fetch(`http://localhost:3002/admin/admin_send_menu_update_notification`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,
@@ -86,7 +86,7 @@ const Stats = () => {
   };
 
   const sendReminderOrderNotification = () => {
-    fetch(`https://api.tailoredtiffin.com//admin/admin_send_reminder_order_notification`, {
+    fetch(`http://localhost:3002/admin/admin_send_reminder_order_notification`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,

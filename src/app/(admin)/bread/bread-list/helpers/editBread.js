@@ -1,5 +1,5 @@
 export async function editBread({ bread_id, name, price, token }) {
-  const res = await fetch("https://api.tailoredtiffin.com//admin/edit_bread", {
+  const res = await fetch("http://localhost:3002/admin/edit_bread", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

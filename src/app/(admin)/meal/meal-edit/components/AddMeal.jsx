@@ -53,7 +53,7 @@ const AddMeal = ({ mealId }) => {
     if (!mealId || !session?.accessToken) return;
 
     const fetchMeal = async () => {
-      const res = await fetch("https://api.tailoredtiffin.com/admin/get_meals", {
+      const res = await fetch("http://localhost:3002/admin/get_meals", {
         headers: {
           Authorization: session.accessToken,
         },
@@ -99,7 +99,7 @@ const AddMeal = ({ mealId }) => {
   useEffect(() => {
     if (!session?.accessToken) return;
 
-    fetch('https://api.tailoredtiffin.com/admin/get_bread', {
+    fetch('http://localhost:3002/admin/get_bread', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -109,7 +109,7 @@ const AddMeal = ({ mealId }) => {
         }
       });
 
-    fetch('https://api.tailoredtiffin.com/admin/get_side_items', {
+    fetch('http://localhost:3002/admin/get_side_items', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -195,7 +195,7 @@ const AddMeal = ({ mealId }) => {
       }
 
       // 4. Send as FormData
-      const res = await fetch("https://api.tailoredtiffin.com/admin/edit_meal", {
+      const res = await fetch("http://localhost:3002/admin/edit_meal", {
         method: "POST",
         headers: {
           'Authorization': session?.accessToken,
@@ -266,7 +266,7 @@ const AddMeal = ({ mealId }) => {
             </Col>
 
             <Col lg={4}>
-              <TextFormInput control={control} type="number" name="other_count" label="Other Count" />
+              <TextFormInput control={control} type="number" name="other_count" label="Rice Section Count" />
             </Col>
 
             {/* SIDE ITEMS CHECKBOXES */}
@@ -274,7 +274,7 @@ const AddMeal = ({ mealId }) => {
               <Col lg={12}>
                 <Card className="mb-3">
                   <CardHeader>
-                    <CardTitle as="h4">Included Side Items</CardTitle>
+                    <CardTitle as="h4">Included Add Ons</CardTitle>
                     <small className="text-muted">Each selected item = 1 qty included with the meal. For extra qty, user can add from extra items.</small>
                   </CardHeader>
                   <CardBody>
