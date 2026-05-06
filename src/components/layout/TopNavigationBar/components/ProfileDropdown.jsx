@@ -1,9 +1,18 @@
+"use client";
 import avatar1 from '@/assets/images/users/avatar-1.jpg';
 import IconifyIcon from '@/components/wrappers/IconifyIcon';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signOut } from "next-auth/react";
 import { Dropdown, DropdownHeader, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
+
+
 const ProfileDropdown = () => {
+  const handleLogout = async () => {
+    await signOut({
+      callbackUrl: "/auth/sign-in",
+    });
+  };
   return <Dropdown className="topbar-item">
       <DropdownToggle as={'a'} type="button" className="topbar-button content-none" id="page-header-user-dropdown " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span className="d-flex align-items-center">
@@ -34,11 +43,12 @@ const ProfileDropdown = () => {
           <IconifyIcon icon="bx:lock" className="text-muted fs-18 align-middle me-1" />
           <span className="align-middle">Lock screen</span>
         </DropdownItem> */}
+        
         <div className="dropdown-divider my-1" />
-        <DropdownItem as={Link} className=" text-danger" href="/auth/sign-in">
-          <IconifyIcon icon="bx:log-out" className="fs-18 align-middle me-1" />
-          <span className="align-middle">Logout</span>
-        </DropdownItem>
+        <DropdownItem className="text-danger" onClick={handleLogout} role="button">
+  <IconifyIcon icon="bx:log-out" className="fs-18 align-middle me-1" />
+  <span className="align-middle">Logout</span>
+</DropdownItem>
       </DropdownMenu>
     </Dropdown>;
 };

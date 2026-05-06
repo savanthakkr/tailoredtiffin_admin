@@ -1,5 +1,5 @@
 export async function deleteMeal({ meals_id, token }) {
-  const res = await fetch("https://api.tailoredtiffin.com/admin/delete_meal", {
+  const res = await fetch("http://localhost:3002/admin/delete_meal", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

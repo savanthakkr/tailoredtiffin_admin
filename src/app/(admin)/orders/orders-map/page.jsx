@@ -31,7 +31,7 @@ export default function OrdersMapPage() {
   ============================= */
   const fetchLocations = async () => {
     const res = await fetch(
-      `https://api.tailoredtiffin.com//admin/get_all_order_locations?date=${date}&slot=${slot}`,
+      `http://localhost:3002/admin/get_all_order_locations?date=${date}&slot=${slot}`,
       {
         headers: {
           Authorization: session?.accessToken

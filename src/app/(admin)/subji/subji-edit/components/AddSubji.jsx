@@ -71,7 +71,7 @@ const AddSubji = () => {
   useEffect(() => {
     if (!subjiId || !session?.accessToken) return;
 
-    fetch('https://api.tailoredtiffin.com//admin/get_subji', {
+    fetch('http://localhost:3002/admin/get_subji', {
       headers: {
         Authorization: `${session.accessToken}`,
       },
@@ -92,7 +92,7 @@ const AddSubji = () => {
   const onSubmit = async (values) => {
     if (!session?.accessToken) return;
 
-    const res = await fetch('https://api.tailoredtiffin.com//admin/edit_subji', {
+    const res = await fetch('http://localhost:3002/admin/edit_subji', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

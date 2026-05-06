@@ -11,17 +11,17 @@ export const options = {
 
       async authorize(credentials) {
         try {
-          const res = await fetch("https://api.tailoredtiffin.com//admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              inputdata: {
-                email: credentials?.email,
-                password: credentials?.password,
-                firebase_token: ""
-              }
-            })
-          });
+          const res = await fetch("http://localhost:3002/admin/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    inputdata: {
+      email: credentials?.email,
+      password: credentials?.password,
+      firebase_token: ""
+    }
+  })
+});
 
           const data = await res.json();
 
@@ -58,7 +58,8 @@ export const options = {
     async jwt({ token, user }) {
       // Save user payload into JWT on first login
       if (user) {
-        token.accessToken = user.token;
+        // support different backend token field names (`token` or `accessToken`)
+        token.accessToken = user.token || user.accessToken || user.access_token || null;
         token.user = user;
       }
       return token;
@@ -67,7 +68,7 @@ export const options = {
     async session({ session, token }) {
       // Make user & token available on frontend
       session.user = token.user;
-      session.accessToken = token.accessToken;
+      session.accessToken = token.accessToken || token?.access_token || null;
       return session;
     }
   },

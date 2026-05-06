@@ -1,6 +1,6 @@
 export const deleteBread = async ({ bread_id, token }) => {
   try {
-    const res = await fetch('https://api.tailoredtiffin.com//admin/delete_bread', {
+    const res = await fetch('http://localhost:3002/admin/delete_bread', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

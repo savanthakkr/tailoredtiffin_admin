@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import IconifyIcon from '@/components/wrappers/IconifyIcon';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL, API_ENDPOINTS } from '@/config/api';
 
 import { Card, CardBody, Col, Row, Button, Form } from 'react-bootstrap';
 
@@ -50,7 +51,7 @@ const Stats = () => {
     setLoading(true);
 
     fetch(
-      `https://api.tailoredtiffin.com//admin/get_admin_dashboard_stats?from_date=${fromDate}&to_date=${toDate}`,
+      `http://localhost:3002/admin/get_admin_dashboard_stats?from_date=${fromDate}&to_date=${toDate}`,
       {
         headers: {
           Authorization: session.accessToken
@@ -72,7 +73,7 @@ const Stats = () => {
 
   
   const sendMenuNotification = () => {
-    fetch(`https://api.tailoredtiffin.com//admin/admin_send_menu_update_notification`, {
+    fetch(`${API_BASE_URL}${API_ENDPOINTS.MENU_NOTIFICATION}`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,
@@ -86,7 +87,7 @@ const Stats = () => {
   };
 
   const sendReminderOrderNotification = () => {
-    fetch(`https://api.tailoredtiffin.com//admin/admin_send_reminder_order_notification`, {
+    fetch(`${API_BASE_URL}${API_ENDPOINTS.REMINDER_NOTIFICATION}`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,

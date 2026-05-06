@@ -5,8 +5,36 @@ import { todoData } from '@/assets/data/task';
 import { notificationsData } from '@/assets/data/topbar';
 import { sleep } from '@/utils/promise';
 import * as yup from 'yup';
-export const getNotifications = async () => {
-  return notificationsData;
+import axios from "axios";
+import { API_BASE_URL, API_ENDPOINTS } from '@/config/api';
+
+export const getNotifications = async accessToken => {
+  try {
+    if (!accessToken) {
+      console.warn("No access token available for notifications");
+      return [];
+    }
+
+    const res = await axios.get(`${API_BASE_URL}${API_ENDPOINTS.NOTIFICATIONS}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const data = res?.data?.data ?? [];
+
+    return data.map(item => ({
+      title: item.title,
+      message: item.message,
+    }));
+  } catch (error) {
+    console.error(
+      "Notification fetch error:",
+      error?.response?.status,
+      error?.response?.data || error.message
+    );
+    return [];
+  }
 };
 export const getProductData = async () => {
   return productData;

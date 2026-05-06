@@ -2,11 +2,11 @@ import React from 'react';
 import SideItemList from './components/SideItemList';
 import PageTItle from '@/components/PageTItle';
 export const metadata = {
-  title: 'Side Item List'
+  title: 'Add On List'
 };
 const SideItemListPage = () => {
   return <>
-      <PageTItle title="SIDE ITEM LIST" />
+      <PageTItle title="ADD ON LIST" />
       <SideItemList />
     </>;
 };

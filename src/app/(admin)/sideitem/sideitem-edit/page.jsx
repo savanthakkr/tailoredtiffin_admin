@@ -11,7 +11,7 @@ const SideItemEditPage = () => {
 
   return (
     <>
-      <PageTItle title="SIDE ITEM EDIT" />
+      <PageTItle title="ADD ON EDIT" />
       <Row>
         <Col xl={9} lg={8}>
           <AddSideItem sideItemId={sideItemId} />
