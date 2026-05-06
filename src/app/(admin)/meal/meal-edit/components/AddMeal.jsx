@@ -53,7 +53,7 @@ const AddMeal = ({ mealId }) => {
     if (!mealId || !session?.accessToken) return;
 
     const fetchMeal = async () => {
-      const res = await fetch("http://localhost:3002/admin/get_meals", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/get_meals", {
         headers: {
           Authorization: session.accessToken,
         },
@@ -99,7 +99,7 @@ const AddMeal = ({ mealId }) => {
   useEffect(() => {
     if (!session?.accessToken) return;
 
-    fetch('http://localhost:3002/admin/get_bread', {
+    fetch('https://api.tailoredtiffin.com/admin/get_bread', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -109,7 +109,7 @@ const AddMeal = ({ mealId }) => {
         }
       });
 
-    fetch('http://localhost:3002/admin/get_side_items', {
+    fetch('https://api.tailoredtiffin.com/admin/get_side_items', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -195,7 +195,7 @@ const AddMeal = ({ mealId }) => {
       }
 
       // 4. Send as FormData
-      const res = await fetch("http://localhost:3002/admin/edit_meal", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/edit_meal", {
         method: "POST",
         headers: {
           'Authorization': session?.accessToken,

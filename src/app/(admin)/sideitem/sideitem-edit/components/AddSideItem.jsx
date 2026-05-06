@@ -26,7 +26,7 @@ const AddSideItem = ({ sideItemId }) => {
     if (!sideItemId || !session?.accessToken) return;
 
     const fetchSideItem = async () => {
-      const res = await fetch("http://localhost:3002/admin/get_side_items", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/get_side_items", {
         headers: {
           Authorization: `${session.accessToken}`,
         },
@@ -49,7 +49,7 @@ const AddSideItem = ({ sideItemId }) => {
   }, [sideItemId, session]);
 
   const onSubmit = async (values) => {
-    await fetch("http://localhost:3002/admin/edit_side_item", {
+    await fetch("https://api.tailoredtiffin.com/admin/edit_side_item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

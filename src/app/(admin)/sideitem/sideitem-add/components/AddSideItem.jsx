@@ -28,7 +28,7 @@ const AddSideItem = () => {
         return;
       }
 
-      const res = await fetch('http://localhost:3002/admin/add/add_side_item', {
+      const res = await fetch('https://api.tailoredtiffin.com/admin/add/add_side_item', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

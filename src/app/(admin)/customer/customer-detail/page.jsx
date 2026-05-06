@@ -30,7 +30,7 @@ const CustomerDetailPage = () => {
   useEffect(() => {
     if (!session?.accessToken || !user_id) return;
 
-    fetch(`http://localhost:3002/admin/admin_user_details?user_id=${user_id}`, {
+    fetch(`https://api.tailoredtiffin.com/admin/admin_user_details?user_id=${user_id}`, {
       headers: {
         Authorization: session.accessToken
       }
@@ -51,7 +51,7 @@ const CustomerDetailPage = () => {
     setLoading(true);
 
     const res = await fetch(
-      `http://localhost:3002/admin/admin_settle_payment`,
+      `https://api.tailoredtiffin.com/admin/admin_settle_payment`,
       {
         method: 'POST',
         headers: {
@@ -85,7 +85,7 @@ const CustomerDetailPage = () => {
   }
 
   const res = await fetch(
-    `http://localhost:3002/admin/admin_send_pending_payment_notification`,
+    `https://api.tailoredtiffin.com/admin/admin_send_pending_payment_notification`,
     {
       method: 'POST',
       headers: {

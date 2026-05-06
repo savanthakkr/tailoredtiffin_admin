@@ -1,5 +1,5 @@
 export async function getMealById(meals_id, token) {
-  const res = await fetch("http://localhost:3002/admin/get_meal", {
+  const res = await fetch("https://api.tailoredtiffin.com/admin/get_meal", {
     headers: {
       Authorization: `${token}`,
     },

@@ -67,7 +67,7 @@ const AddMeal = () => {
   useEffect(() => {
     if (!session?.accessToken) return;
 
-    fetch('http://localhost:3002/admin/get_bread', {
+    fetch('https://api.tailoredtiffin.com/admin/get_bread', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -77,7 +77,7 @@ const AddMeal = () => {
         }
       });
 
-    fetch('http://localhost:3002/admin/get_side_items', {
+    fetch('https://api.tailoredtiffin.com/admin/get_side_items', {
       headers: { Authorization: session.accessToken },
     })
       .then(res => res.json())
@@ -161,7 +161,7 @@ const AddMeal = () => {
 
       // 3. Send as FormData
       const res = await fetch(
-        'http://localhost:3002/admin/add/add_meal',
+        'https://api.tailoredtiffin.com/admin/add/add_meal',
         {
           method: 'POST',
           headers: {

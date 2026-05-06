@@ -1,7 +1,7 @@
 export async function getSideItemList(token) {
   if (!token) return [];
 
-  const res = await fetch("http://localhost:3002/admin/get_side_items", {
+  const res = await fetch("https://api.tailoredtiffin.com/admin/get_side_items", {
     method: "GET",
     headers: {
       Authorization: `${token}`,

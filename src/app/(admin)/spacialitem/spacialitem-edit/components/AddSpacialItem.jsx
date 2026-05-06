@@ -27,7 +27,7 @@ const AddSpacialItem = ({ spacialitemId }) => {
     if (!spacialitemId || !session?.accessToken) return;
 
     const fetchSpacialItem = async () => {
-      const res = await fetch("http://localhost:3002/admin/get_special_items", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/get_special_items", {
         headers: {
           Authorization: `${session.accessToken}`,
         },
@@ -51,7 +51,7 @@ const AddSpacialItem = ({ spacialitemId }) => {
 
   // 🔹 SUBMIT EDIT
   const onSubmit = async (values) => {
-    await fetch("http://localhost:3002/admin/edit_Special_item", {
+    await fetch("https://api.tailoredtiffin.com/admin/edit_Special_item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

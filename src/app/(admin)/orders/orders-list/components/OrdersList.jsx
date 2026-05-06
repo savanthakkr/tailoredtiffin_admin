@@ -59,7 +59,7 @@ const OrdersList = () => {
   ============================ */
   const fetchOrders = async () => {
     const res = await fetch(
-      `http://localhost:3002/admin/get_admin_daily_orders?date=${date}&slot=${slot}`,
+      `https://api.tailoredtiffin.com/admin/get_admin_daily_orders?date=${date}&slot=${slot}`,
       { headers: { Authorization: session?.accessToken } }
     );
     const json = await res.json();

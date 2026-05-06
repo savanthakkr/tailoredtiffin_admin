@@ -81,7 +81,7 @@ const AddSubji = () => {
         return;
       }
 
-      const res = await fetch('http://localhost:3002/admin/add/add_subji', {
+      const res = await fetch('https://api.tailoredtiffin.com/admin/add/add_subji', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

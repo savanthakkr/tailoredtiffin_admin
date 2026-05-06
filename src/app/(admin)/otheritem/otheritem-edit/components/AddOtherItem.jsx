@@ -27,7 +27,7 @@ const AddOtherItem = ({ otheritemId }) => {
     if (!otheritemId || !session?.accessToken) return;
 
     const fetchOtherItem = async () => {
-      const res = await fetch("http://localhost:3002/admin/get_other_item", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/get_other_item", {
         headers: {
           Authorization: `${session.accessToken}`,
         },
@@ -51,7 +51,7 @@ const AddOtherItem = ({ otheritemId }) => {
 
   // 🔹 SUBMIT EDIT
   const onSubmit = async (values) => {
-    await fetch("http://localhost:3002/admin/edit_other_item", {
+    await fetch("https://api.tailoredtiffin.com/admin/edit_other_item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 export async function getSubjiList(token) {
   try {
-    const res = await fetch('http://localhost:3002/admin/get_subji', {
+    const res = await fetch('https://api.tailoredtiffin.com/admin/get_subji', {
       headers: {
         Authorization: `${token}`,
       },
