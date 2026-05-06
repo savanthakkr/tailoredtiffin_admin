@@ -1,62 +1,103 @@
-import IconifyIcon from '@/components/wrappers/IconifyIcon';
-import SimplebarReactClient from '@/components/wrappers/SimplebarReactClient';
-import { getNotifications } from '@/helpers/data';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'react-bootstrap';
-const NotificationItem = ({
-  from,
-  content,
-  icon
-}) => {
-  return <DropdownItem className="py-3 border-bottom text-wrap">
+"use client";
+
+import { useEffect, useState } from "react";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import SimplebarReactClient from "@/components/wrappers/SimplebarReactClient";
+import { getNotifications } from "@/helpers/data";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from "react-bootstrap";
+
+const NotificationItem = ({ title, message }) => {
+  return (
+    <DropdownItem className="py-3 border-bottom text-wrap">
       <div className="d-flex">
-        <div className="flex-shrink-0">
-          {icon ? <Image src={icon} className="img-fluid me-2 avatar-sm rounded-circle" alt="avatar-1" /> : <div className="avatar-sm me-2">
-              <span className="avatar-title bg-soft-info text-info fs-20 rounded-circle">{from.charAt(0).toUpperCase()}</span>
-            </div>}
+        <div className="avatar-sm me-2">
+          <span className="avatar-title bg-soft-info text-info fs-20 rounded-circle">
+            {title?.charAt(0)?.toUpperCase() || "N"}
+          </span>
         </div>
+
         <div className="flex-grow-1">
-          <p className="mb-0 fw-semibold">{from}</p>
-          <p className="mb-0 text-wrap">{content}</p>
+          <p className="mb-0 fw-semibold">{title || "No Title"}</p>
+          <p className="mb-0 text-wrap">{message || "No Message"}</p>
         </div>
       </div>
-    </DropdownItem>;
+    </DropdownItem>
+  );
 };
-const Notifications = async () => {
-  const notificationList = await getNotifications();
-  return <Dropdown className="topbar-item ">
-      <DropdownToggle as={'a'} type="button" className="topbar-button position-relative content-none" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <IconifyIcon icon="solar:bell-bing-bold-duotone" className="fs-24 align-middle " />
+
+const Notifications = () => {
+  const { data: session } = useSession();
+  const [notificationList, setNotificationList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // getNotifications will handle token check internally
+        const data = await getNotifications(session?.accessToken);
+        console.log("Fetched Notifications:", data); // 🔍 Debug
+        setNotificationList(data);
+      } catch (err) {
+        console.error("Error fetching notifications:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [session?.accessToken]);
+
+  return (
+    <Dropdown className="topbar-item">
+      <DropdownToggle
+        as="a"
+        className="topbar-button position-relative content-none"
+      >
+        <IconifyIcon
+          icon="solar:bell-bing-bold-duotone"
+          className="fs-24 align-middle"
+        />
+
+        {/* 🔥 Dynamic Count */}
         <span className="position-absolute topbar-badge fs-10 translate-middle badge bg-danger rounded-pill">
-          3<span className="visually-hidden">unread messages</span>
+          {notificationList.length}
         </span>
       </DropdownToggle>
-      <DropdownMenu className="py-0 dropdown-lg dropdown-menu-end" aria-labelledby="page-header-notifications-dropdown">
-        <div className="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
+
+      <DropdownMenu className="py-0 dropdown-lg dropdown-menu-end">
+        {/* Header */}
+        <div className="p-3 border-bottom">
           <Row className="align-items-center">
             <div className="col">
-              <h6 className="m-0 fs-16 fw-semibold"> Notifications</h6>
-            </div>
-            <div className="col-auto">
-              <Link href="" className="text-dark text-decoration-underline">
-                <small>Clear All</small>
-              </Link>
+              <h6 className="m-0 fs-16 fw-semibold">Notifications</h6>
             </div>
           </Row>
         </div>
-        <SimplebarReactClient style={{
-        maxHeight: 280
-      }}>
-          {notificationList.map((notification, idx) => <NotificationItem key={idx} {...notification} />)}
+
+        {/* Content */}
+        <SimplebarReactClient style={{ maxHeight: 280 }}>
+          {loading ? (
+            <p className="text-center p-3">Loading...</p>
+          ) : notificationList.length > 0 ? (
+            notificationList.map((item, idx) => (
+              <NotificationItem key={idx} {...item} />
+            ))
+          ) : (
+            <p className="text-center p-3">No Notifications</p>
+          )}
         </SimplebarReactClient>
+
+        {/* Footer */}
         <div className="text-center py-3">
-          <Link href="" className="btn btn-primary btn-sm">
-            View All Notification <i className="bx bx-right-arrow-alt ms-1" />
+          <Link href="#" className="btn btn-primary btn-sm">
+            View All Notification
           </Link>
         </div>
       </DropdownMenu>
-    </Dropdown>;
+    </Dropdown>
+  );
 };
+
 export default Notifications;

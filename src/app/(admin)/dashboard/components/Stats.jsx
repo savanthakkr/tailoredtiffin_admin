@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import IconifyIcon from '@/components/wrappers/IconifyIcon';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL, API_ENDPOINTS } from '@/config/api';
 
 import { Card, CardBody, Col, Row, Button, Form } from 'react-bootstrap';
 
@@ -72,7 +73,7 @@ const Stats = () => {
 
   
   const sendMenuNotification = () => {
-    fetch(`http://localhost:3002/admin/admin_send_menu_update_notification`, {
+    fetch(`${API_BASE_URL}${API_ENDPOINTS.MENU_NOTIFICATION}`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,
@@ -86,7 +87,7 @@ const Stats = () => {
   };
 
   const sendReminderOrderNotification = () => {
-    fetch(`http://localhost:3002/admin/admin_send_reminder_order_notification`, {
+    fetch(`${API_BASE_URL}${API_ENDPOINTS.REMINDER_NOTIFICATION}`, {
       method: 'POST',
       headers: {
         Authorization: session.accessToken,
