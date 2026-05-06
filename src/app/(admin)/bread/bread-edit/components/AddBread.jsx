@@ -27,7 +27,7 @@ const AddBread = ({ breadId }) => {
     if (!breadId || !session?.accessToken) return;
 
     const fetchBread = async () => {
-      const res = await fetch("https://api.tailoredtiffin.com//admin/get_bread", {
+      const res = await fetch("https://api.tailoredtiffin.com/admin/get_bread", {
         headers: {
           Authorization: `${session.accessToken}`,
         },
@@ -51,7 +51,7 @@ const AddBread = ({ breadId }) => {
 
   // 🔹 SUBMIT EDIT
   const onSubmit = async (values) => {
-    await fetch("https://api.tailoredtiffin.com//admin/edit_bread", {
+    await fetch("https://api.tailoredtiffin.com/admin/edit_bread", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

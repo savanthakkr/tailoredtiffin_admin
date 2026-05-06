@@ -266,7 +266,7 @@ const AddMeal = ({ mealId }) => {
             </Col>
 
             <Col lg={4}>
-              <TextFormInput control={control} type="number" name="other_count" label="Other Count" />
+              <TextFormInput control={control} type="number" name="other_count" label="Rice Section Count" />
             </Col>
 
             {/* SIDE ITEMS CHECKBOXES */}
@@ -274,7 +274,7 @@ const AddMeal = ({ mealId }) => {
               <Col lg={12}>
                 <Card className="mb-3">
                   <CardHeader>
-                    <CardTitle as="h4">Included Side Items</CardTitle>
+                    <CardTitle as="h4">Included Add Ons</CardTitle>
                     <small className="text-muted">Each selected item = 1 qty included with the meal. For extra qty, user can add from extra items.</small>
                   </CardHeader>
                   <CardBody>

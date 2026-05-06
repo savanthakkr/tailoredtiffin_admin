@@ -8,6 +8,18 @@ export const MENU_ITEMS = [{
   icon: 'solar:widget-5-bold-duotone',
   url: '/dashboard'
 },
+{
+  key: 'menu-manager',
+  label: 'Menu Manager',
+  icon: 'solar:clipboard-list-bold-duotone',
+  url: '/dashboard/menu-manager'
+},
+{
+  key: "notifications",
+  label: "Notifications",
+  url: "/notifications",
+  icon: "bx:bell"
+},
 //  {
 //   key: 'products',
 //   label: 'Products',
@@ -64,7 +76,7 @@ export const MENU_ITEMS = [{
 },{
   key: 'sideitem',
   icon: 'solar:cup-hot-bold-duotone',
-  label: 'Side Item',
+  label: 'Add on',
   children: [{
     key: 'sideitem-list',
     label: 'List',
@@ -102,7 +114,7 @@ export const MENU_ITEMS = [{
 },{
   key: 'otheritem',
   icon: 'solar:clipboard-list-bold-duotone',
-  label: 'other item',
+  label: 'Rice Section',
   children: [{
     key: 'otheritem-list',
     label: 'List',
@@ -143,29 +155,31 @@ export const MENU_ITEMS = [{
     url: '/bread/bread-add',
     parentKey: 'bread'
   }]
-}, {
-  key: 'spacialitem',
-  icon: 'solar:clipboard-list-bold-duotone',
-  label: 'spacial item',
-  children: [{
-    key: 'spacialitem-list',
-    label: 'List',
-    url: '/spacialitem/spacialitem-list',
-    parentKey: 'spacialitem'
-  }, 
-  // {
-  //   key: 'bread-edit',
-  //   label: 'Edit',
-  //   url: '/bread/bread-edit',
-  //   parentKey: 'bread'
-  // }, 
-  {
-    key: 'spacialitem-add',
-    label: 'Create',
-    url: '/spacialitem/spacialitem-add',
-    parentKey: 'spacialitem'
-  }]
-}, {
+}, 
+// {
+//   key: 'spacialitem',
+//   icon: 'solar:clipboard-list-bold-duotone',
+//   label: 'spacial item',
+//   children: [{
+//     key: 'spacialitem-list',
+//     label: 'List',
+//     url: '/spacialitem/spacialitem-list',
+//     parentKey: 'spacialitem'
+//   }, 
+//   // {
+//   //   key: 'bread-edit',
+//   //   label: 'Edit',
+//   //   url: '/bread/bread-edit',
+//   //   parentKey: 'bread'
+//   // }, 
+//   {
+//     key: 'spacialitem-add',
+//     label: 'Create',
+//     url: '/spacialitem/spacialitem-add',
+//     parentKey: 'spacialitem'
+//   }]
+// }, 
+{
   key: 'orders',
   label: 'Orders',
   icon: 'solar:bag-smile-bold-duotone',

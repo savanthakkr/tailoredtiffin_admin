@@ -43,6 +43,13 @@ const GeneralInformationCard = ({ control }) => {
               <option value="">Select Type</option>
               <option value="green">Green Sabji</option>
               <option value="kathol">Kathol Sabji</option>
+              {/* <option value="kathol">Kathol Sabji</option>  */}
+              <option value="paneer">Paneer Sabji</option> 
+              <option value="green-vegetable">Green Vegetable</option> 
+              <option value="variety">Variety Sabji</option> 
+              <option value="potato">Potato Sabji</option>
+
+
             </select>
           </Col>
 
@@ -74,7 +81,7 @@ const AddSubji = () => {
         return;
       }
 
-      const res = await fetch('https://api.tailoredtiffin.com//admin/add/add_subji', {
+      const res = await fetch('https://api.tailoredtiffin.com/admin/add/add_subji', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

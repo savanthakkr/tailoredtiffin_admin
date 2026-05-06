@@ -11,17 +11,17 @@ export const options = {
 
       async authorize(credentials) {
         try {
-          const res = await fetch("https://api.tailoredtiffin.com//admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              inputdata: {
-                email: credentials?.email,
-                password: credentials?.password,
-                firebase_token: ""
-              }
-            })
-          });
+          const res = await fetch("https://api.tailoredtiffin.com/admin/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    inputdata: {
+      email: credentials?.email,
+      password: credentials?.password,
+      firebase_token: ""
+    }
+  })
+});
 
           const data = await res.json();
 

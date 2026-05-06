@@ -1,5 +1,5 @@
 export async function getBreadById(bread_id, token) {
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_bread", {
+  const res = await fetch("https://api.tailoredtiffin.com/admin/get_bread", {
     headers: {
       Authorization: `${token}`,
     },

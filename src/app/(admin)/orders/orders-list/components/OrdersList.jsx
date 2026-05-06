@@ -9,10 +9,11 @@ import { useSession } from 'next-auth/react';
 import { getDefaultDateSlot } from '@/helpers/dateSlot';
 import logoDark from '@/assets/images/logo-dark.png';
 
+
+
 const OrdersList = () => {
 
   const { data: session } = useSession();
-
   const defaultVal = getDefaultDateSlot();
 
   const [date, setDate] = useState(defaultVal.date);
@@ -58,7 +59,7 @@ const OrdersList = () => {
   ============================ */
   const fetchOrders = async () => {
     const res = await fetch(
-      `https://api.tailoredtiffin.com//admin/get_admin_daily_orders?date=${date}&slot=${slot}`,
+      `https://api.tailoredtiffin.com/admin/get_admin_daily_orders?date=${date}&slot=${slot}`,
       { headers: { Authorization: session?.accessToken } }
     );
     const json = await res.json();
@@ -91,7 +92,7 @@ const OrdersList = () => {
     // Helper to normalize type names
     const normalizeType = (type) => {
       if (!type) return '';
-      if (type === 'side_items' || type === 'side_item') return 'Side Item';
+      if (type === 'side_items' || type === 'side_item') return 'Add On';
       if (type === 'other' || type === 'other_item' || type === 'other_items') return 'Other';
       if (type === 'bread') return 'Bread';
       if (type === 'subji' || type === 'subjis') return 'Subji';
@@ -251,6 +252,96 @@ const printInvoice = (order) => {
   win.document.write(html);
   win.document.close();
 };
+const printAllOrders = () => {
+  if (!orders || orders.length === 0) return;
+
+  const logoUrl = logoDark.src;
+
+  const html = `
+    <html>
+    <head>
+      <title>All Orders Print</title>
+      <style>
+        body { font-family: Arial; padding: 20px; }
+
+        .page {
+          page-break-after: always;
+          border: 1px solid #000;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+
+        .logo { width: 120px; display:block; margin:auto; }
+
+        .row { margin: 6px 0; font-size: 14px; }
+
+        table {
+          width:100%;
+          border-collapse:collapse;
+        }
+
+        th, td {
+          border:1px solid #ddd;
+          padding:6px;
+        }
+
+        th { background:#f5f5f5; }
+
+        .section { font-weight:bold; margin-top:10px; }
+      </style>
+    </head>
+
+    <body>
+      ${orders
+        .map((order) => {
+          const customer = order.user || {};
+          const payment = order.payment || {};
+          const paidStatus =
+            payment.is_paid == 1 ? "Paid" : "Pending";
+
+          const items = buildFinalTotals(
+            order.totals,
+            order.extras,
+            order.meal
+          );
+
+          return `
+            <div class="page">
+
+              <img class="logo" src="${logoUrl}" />
+
+              <div class="row"><b>Order ID:</b> #${order.order_id}</div>
+              <div class="row"><b>Status:</b> ${paidStatus}</div>
+
+              <div class="row"><b>Customer:</b> ${customer.name || "-"}</div>
+              <div class="row"><b>Address:</b> ${order.address || "-"}</div>
+
+              <div class="section">Order Details</div>
+
+              <table>
+                <tr><th>Item</th><th>Qty</th></tr>
+                ${items
+                  .map(
+                    (i) => `
+                  <tr><td>${i.name}</td><td>${i.qty}</td></tr>
+                `
+                  )
+                  .join("")}
+              </table>
+
+            </div>
+          `;
+        })
+        .join("")}
+    </body>
+    </html>
+  `;
+
+  const win = window.open("", "_blank");
+  win.document.write(html);
+  win.document.close();
+  win.print();
+};
 
 
 
@@ -272,7 +363,6 @@ const printInvoice = (order) => {
             <div className="d-flex card-header justify-content-between align-items-center">
               <CardTitle as={'h4'}>Daily Orders</CardTitle>
 
-              
 
               <div className="d-flex gap-2">
                 {/* DATE PICKER */}
@@ -303,8 +393,15 @@ const printInvoice = (order) => {
 >
   Show Orders Map
 </Link>
+<button
+                onClick={printAllOrders}
+                className="btn btn-danger"
+              >
+                Print All
+              </button>
               </div>
             </div>
+            
 
             <CardBody className="p-0">
               <div className="table-responsive">

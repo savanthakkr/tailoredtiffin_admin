@@ -259,7 +259,7 @@ const AddMeal = () => {
                 control={control}
                 type="number"
                 name="other_count"
-                label="Other Items"
+                label="Rice Section"
               />
             </Col>
           </Row>
@@ -270,7 +270,7 @@ const AddMeal = () => {
       {sideItems.length > 0 && (
         <Card className="mb-3">
           <CardHeader>
-            <CardTitle as="h4">Included Side Items</CardTitle>
+            <CardTitle as="h4">Included Add Ons</CardTitle>
             <small className="text-muted">Each selected item = 1 qty included with the meal. For extra qty, user can add from extra items.</small>
           </CardHeader>
           <CardBody>

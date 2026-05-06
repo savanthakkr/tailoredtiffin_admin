@@ -17,7 +17,7 @@ const DashboardPage = () => {
         <PredictedTiffinCalculator />
         <Conversions />
         {/* <Orders /> */}
-        <DashboardMenuManager />
+        {/* <DashboardMenuManager /> */}
       </Row>
     </>;
 };

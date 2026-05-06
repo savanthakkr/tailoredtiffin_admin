@@ -13,7 +13,7 @@ const AddSideItem = () => {
   const router = useRouter();
 
   const schema = yup.object({
-    name: yup.string().required('Please enter side item name'),
+    name: yup.string().required('Please enter add on name'),
     price: yup.number().typeError('Please enter a valid price').required('Please enter price').min(0, 'Price must be 0 or more'),
   });
 
@@ -48,10 +48,10 @@ const AddSideItem = () => {
         reset();
         router.push('/sideitem/sideitem-list');
       } else {
-        alert(data.msg || 'Failed to add side item');
+        alert(data.msg || 'Failed to add add on');
       }
     } catch (error) {
-      console.error('Add side item error:', error);
+      console.error('Add add on error:', error);
       alert('Something went wrong');
     }
   };
@@ -68,8 +68,8 @@ const AddSideItem = () => {
               <TextFormInput
                 control={control}
                 name="name"
-                label="Side Item Name"
-                placeholder="Enter Side Item Name (e.g. Buttermilk, Salad)"
+                label="Add On Name"
+                placeholder="Enter Add On Name (e.g. Buttermilk, Salad)"
               />
             </Col>
             <Col lg={6}>

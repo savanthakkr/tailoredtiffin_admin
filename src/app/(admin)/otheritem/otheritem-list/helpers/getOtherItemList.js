@@ -4,7 +4,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 export async function getOtherItemList(token) {
   if (!token) return [];
 
-  const res = await fetch("https://api.tailoredtiffin.com//admin/get_other_item", {
+  const res = await fetch("https://api.tailoredtiffin.com/admin/get_other_item", {
     method: "GET",
     headers: {
       Authorization: `${token}`,

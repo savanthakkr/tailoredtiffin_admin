@@ -60,7 +60,7 @@ const AddBread = () => {
         return;
       }
 
-      const res = await fetch('https://api.tailoredtiffin.com//admin/add/add_bread', {
+      const res = await fetch('https://api.tailoredtiffin.com/admin/add/add_bread', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 export async function deleteSubji({ subji_id, token }) {
-  return fetch('https://api.tailoredtiffin.com//admin/delete_subji', {
+  return fetch('https://api.tailoredtiffin.com/admin/delete_subji', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

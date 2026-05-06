@@ -1,6 +1,6 @@
 export const loginAdmin = async (email, password) => {
   const res = await fetch(
-    "https://api.tailoredtiffin.com//admin/login",
+    "https://api.tailoredtiffin.com/admin/login",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
